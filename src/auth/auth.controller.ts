@@ -6,10 +6,10 @@ import { RegisterDto } from './dto/registerUser.dto';
 export class AuthController {
     constructor(private readonly authService: AuthService) { }
     @Post('register')
-    register(@Body() registerUserDto: RegisterDto) {
+    async register(@Body() registerUserDto: RegisterDto) {
         //logic to register a user will be in auth.service.ts as controllers is only for handling the requests and responses
         // console.log(registerUserDto)
-        const result = this.authService.registerUser(registerUserDto)
-        return result
+        const createdUser = await this.authService.registerUser(registerUserDto)
+        return createdUser
     }
 }
